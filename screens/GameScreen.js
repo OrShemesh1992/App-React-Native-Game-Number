@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import { View, StyleSheet, Text, Button,Alert } from 'react-native';
 import NumberContainer from '../components/NumberContainer'
 import Card from '../components/Card'
@@ -15,8 +15,18 @@ const generaterandimbetween = (min, max, exclude) => {
 };
 const GameScreen = props => {
     const [cuurentGuess, setCuurentGuess] = useState(generaterandimbetween(1,100,props.userChoice));
+    const [rounds,setRounds]=useState(0);
     const cuurentLow = useRef(1);
     const cuurentHigh = useRef(100);
+
+    const { userChoice, onGameOver }=props;
+
+    useEffect(()=>{
+        if (cuurentGuess === props.userChoice){
+            onGameOver(rounds);
+        }
+    },[cuurentGuess,userChoice,onGameOver]);
+
     const nextGuessHandler = direction => {
         if((direction === 'lower' && cuurentGuess < props.userChoice)||(direction === 'greater' && cuurentGuess > props.userChoice)){
             Alert.alert('Don\'t lie!','You know that this is wrong...',[{text: 'sorry!',style: 'cancel'}])
@@ -29,6 +39,7 @@ const GameScreen = props => {
         }
         const nextNumber=generaterandimbetween(cuurentHigh.current,cuurentLow.current,cuurentGuess);
         setCuurentGuess(nextNumber);
+        setRounds(curRounds => curRounds+1);
     };
 
     return (
