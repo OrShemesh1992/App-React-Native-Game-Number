@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 9665,
+  "packagerPort": 19000,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://r2-vz7.anonymous.app-react-native-game-number.exp.direct",
   "packagerNgrokUrl": "https://packager.r2-vz7.anonymous.app-react-native-game-number.exp.direct",
-  "ngrokPid": 9713,
+  "ngrokPid": 8222,
   "webpackServerPort": null
 }
